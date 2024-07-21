@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<body style ="background-color:silver;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>promo5</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('fondo.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .cart-icon {
+            position: fixed;
+            top: 60px; /* Debajo del menú */
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        .cart-icon img {
+            width: 50px;
+            height: auto;
+        }
+        .cart {
+            display: none;
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            background-color: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            z-index: 1000;
+        }
+        .products {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 120px; /* Espacio para el menú y carrito */
+            padding: 20px;
+        }
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+        .product button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .cart-items {
+            margin-top: 10px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .cart-item img {
+            width: 50px;
+            height: auto;
+        }
+        .cart-item button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .checkout {
+            margin-top: 10px;
+        }
+        .checkout button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .separator {
+            width: 90%;
+            height: 2px;
+            background-color: #ddd;
+            margin: 20px auto;
+        }
+        .offers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .offer {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .offer:hover {
+            transform: translateY(-10px);
+        }
+        .offer img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+           <a href="file:///E:/Diego%20moreno%20villa/Inicio%20de%20sesion.html">Registrate</a>
+            <a href="file:///E:/Diego%20moreno%20villa/Principal.html">Inicio</a>
+            <a href="file:///E:/Diego%20moreno%20villa/pistolas.html">Pistolas</a>
+            <a href="file:///E:/Diego%20moreno%20villa/ametralladoras.html">Ametralladoras</a>
+            <a href="file:///E:/Diego%20moreno%20villa/municion.html">Municion</a>
+            <a href="file:///E:/Diego%20moreno%20villa/proteccion.html">Proteccion</a>
+            <a href="file:///E:/Diego%20moreno%20villa/promociones.html">Promociones</a>
+            <a href="file:///E:/Diego%20moreno%20villa/Contactanos.html">contactanos</a>
+            <a href="file:///E:/Diego%20moreno%20villa/quienes%20somos.html">Quienes somos</a>
+        </nav>
+    </header>
+    <div class="cart-icon" onclick="toggleCart()">
+        <img src="img/carrito.jpg" alt="Carrito de Compras">
+    </div>
+    <div class="cart">
+        <h3>Carrito de Compras</h3>
+        <div class="cart-items"></div>
+        <div class="checkout">
+            <button onclick="checkout()">Pagar</button>
+        </div>
+    </div>
+    <div class="products">
+        <div class="product" data-name="Promo 5" data-price="100" data-description="guantes protectores de manos y nudillos color negra." data-image="img\producto17.jpg">
+            <img src="img\producto17.jpg" alt="Producto 1">
+            <h3>¡Producto en oferta!</h3>
+            <p>Caracteristicas:guantes protectores de manos y nudillos color negra.</p>
+            <p>Precio: $100</p>
+            <button onclick="addToCart(this)">Comprar</button>
+        </div>
+    </div>
+    <div class="separator"></div>
+    <h3 style="text-align:center">Otros Productos en Oferta</h3>
+    <div class="offers">
+        <!-- Ejemplo de producto en oferta -->
+        <div class="offer" onclick="window.location.href='file:///E:/Diego%20moreno%20villa/promo11.html'">
+            <img src="img\Producto39.jpg" alt="Oferta 1">
+            <h4>en oferta</h4>
+            <p>Precio: $1420</p>
+        </div>
+        <div class="offer" onclick="window.location.href='file:///E:/Diego%20moreno%20villa/promo7.html'">
+            <img src="img\Producto43.jpg" alt="Oferta 2">
+            <h4>en oferta</h4>
+            <p>Precio: $1700</p>
+        </div>
+        <div class="offer" onclick="window.location.href='file:///E:/Diego%20moreno%20villa/promo8.html'">
+            <img src="img\Producto40.jpg" alt="Oferta 3">
+            <h4>en oferta </h4>
+            <p>Precio: $4100</p>
+        </div>
+        <div class="offer" onclick="window.location.href='file:///E:/Diego%20moreno%20villa/promo6.html'">
+            <img src="img\Producto14.jpg" alt="Oferta 4">
+            <h4>en oferta </h4>
+            <p>Precio: $400</p>
+        </div>
+        <div class="offer" onclick="window.location.href='file:///E:/Diego%20moreno%20villa/promo3.html'">
+            <img src="img\Producto37.jpg" alt="Oferta 5">
+            <h4>en oferta </h4>
+            <p>Precio: $4700</p>
+        </div>
+        <div class="offer" onclick="window.location.href='file:///E:/Diego%20moreno%20villa/promo2.html'">
+            <img src="img\Producto41.jpg" alt="Oferta 6">
+            <h4>en oferta</h4>
+            <p>Precio: $150</p>
+        </div>
+        <div class="offer" onclick="window.location.href='file:///E:/Diego%20moreno%20villa/promo10.html'">
+            <img src="img\Producto38.jpg" alt="Oferta 7">
+            <h4>en oferta</h4>
+            <p>Precio: $6545</p>
+        </div>
+        <div class="offer" onclick="window.location.href='file:///E:/Diego%20moreno%20villa/promo4.html'">
+            <img src="img\Producto42.jpg" alt="Oferta 8">
+            <h4>en oferta</h4>
+            <p>Precio: $2000</p>
+        </div>
+        <div class="offer" onclick="window.location.href='file:///E:/Diego%20moreno%20villa/promo1.html'">
+            <img src="img\Producto35.jpg" alt="Oferta 9">
+            <h4>en oferta</h4>
+            <p>Precio: $200</p>
+        </div>
+        <div class="offer" onclick="window.location.href='file:///E:/Diego%20moreno%20villa/promo9.html'">
+            <img src="img\Producto36.jpg" alt="Oferta 10">
+            <h4>en oferta</h4>
+            <p>Precio: $720</p>
+        </div>
+    </div>
+    <script>
+        function toggleCart() {
+            const cart = document.querySelector('.cart');
+            cart.style.display = cart.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function addToCart(button) {
+            const product = button.parentElement;
+            const name = product.dataset.name;
+            const price = product.dataset.price;
+            const description = product.dataset.description;
+            const image = product.dataset.image;
+
+            const cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${image}" alt="${name}">
+                <div>
+                    <h4>${name}</h4>
+                    <p>${description}</p>
+                    <p>Precio: $${price}</p>
+                </div>
+                <button onclick="removeFromCart(this)">Eliminar</button>
+            `;
+
+            const cartItemsContainer = document.querySelector('.cart-items');
+            cartItemsContainer.appendChild(cartItem);
+
+            updateTotalPrice();
+        }
+
+        function removeFromCart(button) {
+            button.parentElement.remove();
+            updateTotalPrice();
+        }
+
+        function updateTotalPrice() {
+            const cartItems = document.querySelectorAll('.cart-item');
+            let total = 0;
+            cartItems.forEach(item => {
+                const price = parseFloat(item.querySelector('p:last-of-type').innerText.replace('Precio: $', ''));
+                total += price;
+            });
+            document.querySelector('.checkout button').innerText = `Pagar $${total.toFixed(2)}`;
+        }
+
+        function checkout() {
+            alert('Compra hecha');
+            const cartItemsContainer = document.querySelector('.cart-items');
+            cartItemsContainer.innerHTML = '';
+            updateTotalPrice();
+            toggleCart();
+        }
+    </script>
+</body>
+</html>

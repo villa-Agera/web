@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>municion</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('img/muni.jpg'); /* Imagen de fondo */
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+        nav {
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 10px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        .cart-icon {
+            position: fixed;
+            top: 60px; /* Debajo del menú */
+            right: 20px;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        .cart-icon img {
+            width: 50px;
+            height: auto;
+        }
+        .cart {
+            display: none;
+            position: fixed;
+            top: 120px;
+            right: 20px;
+            background-color: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            width: 300px;
+            z-index: 1000;
+        }
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 120px; /* Espacio para el menú y carrito */
+            justify-content: center;
+            padding: 20px;
+        }
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px;
+            padding: 10px;
+            width: 200px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .product img {
+            width: 100%;
+            height: auto;
+        }
+        .product button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .cart-items {
+            margin-top: 10px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .cart-item img {
+            width: 50px;
+            height: auto;
+        }
+        .cart-item button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .checkout {
+            margin-top: 10px;
+        }
+        .checkout button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="file:///E:/Diego%20moreno%20villa/Inicio%20de%20sesion.html">Registrate</a>
+            <a href="file:///E:/Diego%20moreno%20villa/Principal.html">Inicio</a>
+            <a href="file:///E:/Diego%20moreno%20villa/pistolas.html">Pistolas</a>
+            <a href="file:///E:/Diego%20moreno%20villa/ametralladoras.html">Ametralladoras</a>
+            <a href="file:///E:/Diego%20moreno%20villa/municion.html">Municion</a>
+            <a href="file:///E:/Diego%20moreno%20villa/proteccion.html">Proteccion</a>
+            <a href="file:///E:/Diego%20moreno%20villa/promociones.html">Promociones</a>
+            <a href="file:///E:/Diego%20moreno%20villa/Contactanos.html">contactanos</a>
+            <a href="file:///E:/Diego%20moreno%20villa/quienes%20somos.html">Quienes somos</a>
+        </nav>
+    </header>
+    <div class="cart-icon" onclick="toggleCart()">
+        <img src="img/carrito.jpg" alt="Carrito de Compras">
+    </div>
+    <div class="cart">
+        <h3>Carrito de Compras</h3>
+        <div class="cart-items"></div>
+        <div class="checkout">
+            <button onclick="checkout()">Pagar</button>
+        </div>
+    </div>
+    <div class="products">
+        <!-- Ejemplo de producto -->
+        <div class="product" data-name="Producto 17" data-price="350" data-description="botella con 2,000 bolas de hidrogel." data-image="img\Producto27.jpg">
+            <img src="img\Producto27.jpg" alt="Producto 1">
+            <h3>botella goldenBall</h3>
+            <p>Caracteristicas:botella con 2,000 bolas de hidrogel.</p>
+            <p>Precio: $350</p>
+            <button onclick="addToCart(this)">Comprar</button>
+        </div>
+        <div class="product" data-name="Producto 18" data-price="1790" data-description="Bote con 15,000 balines de 12g para arma de 6mm." data-image="img\Producto28.jpg">
+            <img src="img\Producto28.jpg" alt="Producto 2">
+            <h3>frasco tactical Force blanco y negro</h3>
+            <p>Caracteristicas: Bote con 15,000 balines de 12g para arma de 6mm.</p>
+            <p>Precio: $1790</p>
+            <button onclick="addToCart(this)">Comprar</button>
+        </div>
+        <div class="product" data-name="Producto 19" data-price="1560" data-description="Bote con 10,000 balines de hidrogel." data-image="img\Producto29.jpg">
+            <img src="img\Producto29.jpg" alt="Producto 3">
+            <h3>botella conbatzone amarillas.</h3>
+            <p>Caracteristicas:Bote con 10,000 balines de hidrogel.</p>
+            <p>Precio: $1560</p>
+            <button onclick="addToCart(this)">Comprar</button>
+        </div>
+        <div class="product" data-name="Producto 20" data-price="625" data-description="Bote con 5,000 balines." data-image="img\Producto30.jpg">
+            <img src="img\Producto30.jpg" alt="Producto 4">
+            <h3>botella conbatzone amarillas.</h3>
+            <p>Caracteristicas: Bote con 5,000 balines.</p>
+            <p>Precio: $625</p>
+            <button onclick="addToCart(this)">Comprar</button>
+        </div>
+        <div class="product" data-name="Producto 21" data-price="160" data-description="bete con 1,000 balines." data-image="img\Producto31.jpg">
+            <img src="img\Producto31.jpg" alt="Producto 5">
+            <h3>Frasco ARSUK blancas</h3>
+            <p>Caracteristicas:bote con 1,000 balines.</p>
+            <p>Precio: $160</p>
+            <button onclick="addToCart(this)">Comprar</button>
+        </div>
+        <div class="product" data-name="Producto 22" data-price="480" data-description="Mira holografica red hot.Mira holografica red hot." data-image="img\Producto32.jpg">
+            <img src="img\Producto32.jpg" alt="Producto 6">
+            <h3>mira holografica</h3>
+            <p>Caracteristicas: Mira holografica red hot.</p>
+            <p>Precio: $480</p>
+            <button onclick="addToCart(this)">Comprar</button>
+        </div>
+        <div class="product" data-name="Producto 23" data-price="230" data-description="mira 1x22x33 strike." data-image="img\Producto33.jpg">
+            <img src="img\Producto33.jpg" alt="Producto 7">
+            <h3>mira strike</h3>
+            <p>Caracteristicas: mira 1x22x33 strike.</p>
+            <p>Precio: $230</p>
+            <button onclick="addToCart(this)">Comprar</button>
+        </div>
+        <div class="product" data-name="Producto 24" data-price="300" data-description="lacer empire Evs." data-image="img\Producto34.jpg">
+            <img src="img\Producto34.jpg" alt="Producto 8">
+            <h3>Lacer</h3>
+            <p>Caracteristicas: lacer empire Evs.</p>
+            <p>Precio: $300</p>
+            <button onclick="addToCart(this)">Comprar</button>
+        </div>
+    </div>
+    <script>
+        function addToCart(button) {
+            const productElement = button.parentElement;
+            const name = productElement.getAttribute('data-name');
+            const price = parseFloat(productElement.getAttribute('data-price'));
+            const description = productElement.getAttribute('data-description');
+            const image = productElement.getAttribute('data-image');
+
+            const cartItemsContainer = document.querySelector('.cart-items');
+            
+            let cartItem = document.createElement('div');
+            cartItem.classList.add('cart-item');
+            cartItem.innerHTML = `
+                <img src="${image}" alt="${name}">
+                <div>
+                    <h4>${name}</h4>
+                    <p>${description}</p>
+                    <p>Precio: $${price}</p>
+                </div>
+                <button onclick="removeFromCart(this)">Eliminar</button>
+            `;
+            cartItemsContainer.appendChild(cartItem);
+
+            updateTotalPrice();
+        }
+
+        function removeFromCart(button) {
+            button.parentElement.remove();
+            updateTotalPrice();
+        }
+
+        function updateTotalPrice() {
+            const cartItems = document.querySelectorAll('.cart-item');
+            let total = 0;
+            cartItems.forEach(item => {
+                const price = parseFloat(item.querySelector('p:last-of-type').innerText.replace('Precio: $', ''));
+                total += price;
+            });
+            document.querySelector('.checkout button').innerText = `Pagar $${total.toFixed(2)}`;
+        }
+
+        function toggleCart() {
+            const cart = document.querySelector('.cart');
+            cart.style.display = cart.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function checkout() {
+            alert('Compra hecha');
+            const cartItemsContainer = document.querySelector('.cart-items');
+            cartItemsContainer.innerHTML = '';
+            updateTotalPrice();
+            toggleCart();
+        }
+    </script>
+</body>
+</html>
